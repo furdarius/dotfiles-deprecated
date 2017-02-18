@@ -315,12 +315,6 @@ nnoremap <leader>i :set list!<cr>
 nmap <tab> gt
 nmap <s-tab> gT
 
-" Indent lines with cmd+[ and cmd+]
-nmap <D-]> >>
-nmap <D-[> <<
-vmap <D-[> <gv
-vmap <D-]> >gv
-
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<CR>
 
