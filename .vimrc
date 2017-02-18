@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 " Colorscheme
 Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
 
 Plug 'tpope/vim-commentary'
 
@@ -24,11 +25,26 @@ Plug 'itchyny/lightline.vim'
 Plug 'bronson/vim-trailing-whitespace'
 
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+Plug 'scrooloose/nerdtree'
+
+Plug 'Raimondi/delimitMate'
+
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'corylanou/vim-present', {'for' : 'present'}
+Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'elzr/vim-json', {'for' : 'json'}
+Plug 'fatih/vim-hclfmt'
+Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
+
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 
 " Editor
+set background=dark
 colorscheme molokai
 set t_Co=256
 
@@ -63,8 +79,6 @@ set clipboard=unnamed
 if has('unnamedplus')
     set clipboard=unnamed,unnamedplus
 endif
-
-set pastetoggle=<F2>
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -112,9 +126,13 @@ set showbreak=↪>\
 let g:rehash256 = 1
 
 " Ctrlp
+
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_switch_buffer = 'et'  " jump to a file if it's open already
+let g:ctrlp_mruf_max=450    " number of recently opened files
+let g:ctrlp_max_files=0     " do not limit the number of searchable files
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("v")': ['<c-z>'],
     \ }
@@ -123,8 +141,12 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
+
+let g:ctrlp_match_window = 'bottom,order:btt,max:10,results:10'
+let g:ctrlp_buftag_types = {'go' : '--language-force=go --golang-types=ftv'}
+
+nmap <C-b> :CtrlPCurWD<cr>
+imap <C-b> <esc>:CtrlPCurWD<cr>
 
 " The Silver Searcher
 if executable('ag')
@@ -169,9 +191,37 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "10s"
 
+let g:go_disable_autoinstall = 1
+let g:go_loaded_gosnippets = 1
+let g:go_snippet_engine = "neosnippet"
+
+" neosnippet
+let g:neosnippet#enable_snipmate_compatibility = 0
+let g:neosnippet#disable_runtime_snippets = { '_': 1 }
+let g:neosnippet#snippets_directory =
+    \$XDG_CONFIG_HOME.'/vim/snippets/rafi,'
+    \.$XDG_CONFIG_HOME.'/vim/snippets/shougo/neosnippets,'
+    \.$XDG_CONFIG_HOME.'/vim/bundle/go/gosnippets/snippets'
+
+" ==================== delimitMate ====================
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_expand_inside_quotes = 0
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
+
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
+
+
+augroup filetypedetect
+  autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+  autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
+  autocmd BufNewFile,BufRead *.hcl setf conf
+augroup END
+
 
 " vim-python
 augroup vimrc-python
@@ -186,6 +236,8 @@ augroup FileType json
     autocmd FileType json setlocal tabstop=2 shiftwidth=2 expandtab
 augroup END
 
+autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
 
 function! s:build_go_files()
   let l:file = expand('%')
@@ -244,6 +296,9 @@ nnoremap <leader>a :cclose<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
+" Center the screen
+nnoremap <space> zz
+
 " Easier split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -260,6 +315,12 @@ nnoremap <leader>i :set list!<cr>
 nmap <tab> gt
 nmap <s-tab> gT
 
+" Indent lines with cmd+[ and cmd+]
+nmap <D-]> >>
+nmap <D-[> <<
+vmap <D-[> <gv
+vmap <D-]> >gv
+
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<CR>
 
@@ -268,3 +329,11 @@ nnoremap <leader>Q :q<CR>
 " Quickly close the current buffer
 nnoremap <leader>q :bd<CR>
 nnoremap <leader>w :w<CR>
+
+noremap <Leader>n :NERDTreeToggle<cr>
+noremap <Leader>f :NERDTreeFind<cr>
+
+let NERDTreeShowHidden=1
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
