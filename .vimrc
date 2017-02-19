@@ -13,6 +13,8 @@ Plug 'tpope/vim-commentary'
 " Navigation
 Plug 'ctrlpvim/ctrlp.vim'
 
+Plug 'majutsushi/tagbar'
+
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
@@ -41,12 +43,17 @@ Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 
 Plug 'unblevable/quick-scope'
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
 call plug#end()
 
 " Editor
 set background=dark
 colorscheme molokai
-set t_Co=256
+if !has('gui_running')
+  set t_Co=256
+endif
 
 filetype plugin indent on      " Automatically detect file types.
 syntax on                      " Syntax highlighting
@@ -61,6 +68,8 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set completeopt=menu
 set termencoding=utf8
+scriptencoding utf-8
+set noshowmode
 set history=1000               " Store a ton of history (default is 20)
 set autoread                   " Read changed files
 set autowrite                  " Automatically write a file when leaving a modified buffer
@@ -160,6 +169,9 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
+
+set termguicolors
+
 " statusline config
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -209,6 +221,30 @@ let g:delimitMate_expand_space = 1
 let g:delimitMate_smart_quotes = 1
 let g:delimitMate_expand_inside_quotes = 0
 let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
+
+
+" neocomplete like
+set completeopt+=noinsert
+" deoplete.nvim recommend
+set completeopt+=noselect
+
+" Check python3 with :echo has("python3")
+" Do for installing
+" sudo python3 -m pip install --upgrade --force pip
+" pip3 install neovim
+let g:python_host_prog = '/usr/bin/python'
+" Path to python interpreter for neovim
+let g:python3_host_prog  = '/usr/bin/python3'
+" Skip the check of neovim module
+let g:python3_host_skip_check = 1
+let g:python_host_skip_check = 1
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+
 
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
@@ -307,6 +343,9 @@ nnoremap <C-H> <C-W><C-H>
 
 " Search for the word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Tagbar
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
