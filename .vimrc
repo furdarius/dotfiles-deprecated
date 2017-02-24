@@ -24,7 +24,7 @@ Plug 'pearofducks/ansible-vim'
 " Status line
 Plug 'itchyny/lightline.vim'
 
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neosnippet.vim'
@@ -129,6 +129,8 @@ set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 set nolist
 set laststatus=2
 set showbreak=↪>\
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Plugin settings
 
