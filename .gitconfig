@@ -1,0 +1,11 @@
+[user]
+	name = Artemiy Ryabinkov
+	email = getlag@ya.ru
+[gpg]
+	program = gpg2
+
+[color]
+	ui = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
