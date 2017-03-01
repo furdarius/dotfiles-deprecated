@@ -3,9 +3,15 @@
 	email = getlag@ya.ru
 [gpg]
 	program = gpg2
-
 [color]
 	ui = true
-
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[diff]
+	external = meld
+[alias]
+	d = difftool
+	st = status --short --branch
+	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+[core]
+	editor = nvim
