@@ -1,20 +1,20 @@
 [user]
-	name = Artemiy Ryabinkov
-	email = getlag@ya.ru
+    name = Artemiy Ryabinkov
+    email = getlag@ya.ru
 [gpg]
-	program = gpg2
+    program = gpg2
 [color]
-	ui = true
+    ui = true
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 [diff]
-	tool = meld
+    tool = meld
 [alias]
-	c = commit -sS
-	d = difftool
-	st = status --short --branch
-	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+    c = commit -sS
+    d = difftool
+    st = status --short --branch
+    grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
 [core]
-	editor = nvim
+    editor = nvim
 [difftool "meld"]
-	cmd = meld "$LOCAL $REMOTE"
+    cmd = meld "$LOCAL $REMOTE"
