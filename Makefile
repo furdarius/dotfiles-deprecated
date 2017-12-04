@@ -1,23 +1,21 @@
 CWD=$(shell pwd)
-BINDIR=$(HOME)/bin
 
 all: vim git bash
 
-vim: 
+vim:
 	rm -rf $(HOME)/.vimrc
 	rm -rf $(HOME)/.config/nvim/init.vim
-	ln -s $(HOME)/.vim $(HOME)/.config/nvim
 	ln -s $(CWD)/.vimrc $(HOME)/.vimrc
-	ln -s $(CWD)/.vimrc $(HOME)/.config/nvim/init.vim
+	ln -s $(HOME)/.vimrc $(HOME)/.config/nvim/init.vim
 
-git: 
+git:
 	rm -rf $(HOME)/.gitconfig
 	ln -s $(CWD)/.gitconfig $(HOME)/.gitconfig
 
 bash:
-	rm -rf $(HOME)/.bash_profile
-	rm -rf $(HOME)/.bash_aliases
-	ln -s $(CWD)/.bash_aliases $(HOME)/.bash_aliases
-	ln -s $(CWD)/.bash_profile $(HOME)/.bash_profile
+	rm -rf $(HOME)/.zsh_profile
+	rm -rf $(HOME)/.zsh_aliases
+	ln -s $(CWD)/.zsh_aliases $(HOME)/.zsh_aliases
+	ln -s $(CWD)/.zsh_profile $(HOME)/.zsh_profile
 
 .PHONY: vim git bash
