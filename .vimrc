@@ -27,6 +27,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
+Plug 'unblevable/quick-scope'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -358,6 +360,10 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
 "===================== PLUGINS ======================
 
+" ==================== lightline ====================
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " ==================== Fugitive ====================
 vnoremap <leader>gb :Gblame<CR>
