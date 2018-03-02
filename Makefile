@@ -27,6 +27,7 @@ vim:
 git:
 	rm -rf $(HOME)/.gitconfig
 	ln -s $(CWD)/.gitconfig $(HOME)/.gitconfig
+	touch $(HOME)/.gitignore_global
 
 shell:
 	# https://gist.github.com/furdarius/97bf6092104222fd36c4fd351b9264c2
