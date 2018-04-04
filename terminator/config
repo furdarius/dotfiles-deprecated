@@ -3,7 +3,21 @@
   title_font = PowerlineSymbols Medium 14
   title_transmit_bg_color = "#506688"
   window_state = fullscreen
+  geometry_hinting = False
+  tab_position = hidden
+  borderless = True
 [keybindings]
+  scaled_zoom = <Shift><Control>u
+  go_up = <Shift>Up
+  next_tab = <Shift>Right
+  split_horiz = <Shift><Control>h
+  split_vert = <Shift><Control>v
+  move_tab_right = <Shift><Alt>Right
+  prev_tab = <Shift>Left
+  go_down = <Shift>Down
+  move_tab_left = <Shift><Alt>Left
+  go_next = <Shift><Control>o
+  new_tab = <Shift><Control>t
 [layouts]
   [[default]]
     [[[child1]]]
