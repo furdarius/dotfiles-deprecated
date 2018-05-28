@@ -285,6 +285,14 @@ if has('terminal')
   " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
 endif
 
+" enable tab shortcuts
+nmap <F7> :tabprevious <CR>
+nmap <F8> :tabnext <CR>
+map <F7> :tabprevious <CR>
+map <F8> :tabnext <CR>
+imap <F7> <Esc> :tabprevious <CR>i
+imap <F8> <Esc> :tabnext <CR>i
+
 " Visual linewise up and down by default (and use gj gk to go quicker)
 noremap <Up> gk
 noremap <Down> gj
