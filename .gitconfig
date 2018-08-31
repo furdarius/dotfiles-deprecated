@@ -21,3 +21,7 @@
     excludesfile = /home/furdarius/.gitignore_global
 [difftool "meld"]
     cmd = meld "$LOCAL $REMOTE"
+[push]
+	default = current
+[rebase]
+        autoStash = true
