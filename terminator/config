@@ -6,9 +6,7 @@
   title_transmit_bg_color = "#506688"
   window_state = fullscreen
 [keybindings]
-  go_down = <Shift>Down
   go_next = <Shift><Control>o
-  go_up = <Shift>Up
   move_tab_left = <Shift><Alt>Left
   move_tab_right = <Shift><Alt>Right
   next_tab = <Shift>Right
