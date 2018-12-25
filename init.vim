@@ -1,5 +1,6 @@
-" I use the same vimrc for both nvim and vim
-call plug#begin('~/.vim/plugged')
+" Execute :PlugInstall command after nvim bootstrap
+
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'

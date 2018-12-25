@@ -1,22 +1,19 @@
 CWD=$(shell pwd)
 
-all: terminal git
+all: terminal git neovim
 
 terminal:
 	sudo pacman -Syu terminator
+	rm -rf $(HOME)/.config/terminator
 	ln -s $(CWD)/terminator $(HOME)/.config/terminator
 
-vim:
-	rm -rf $(HOME)/.vimrc
-	rm -rf $(HOME)/.vim
-	rm -rf $(HOME)/.config/nvim
-	rm -rf $(HOME)/.config/terminator
-	ln -s $(CWD)/.vimrc $(HOME)/.vimrc
-	mkdir $(HOME)/.vim
-	ln -s $(HOME)/.vim $(HOME)/.config/nvim
-	ln -s $(HOME)/.vimrc $(HOME)/.vim/init.vim
-	@curl -fLo $(HOME)/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+neovim:
+	sudo pacman -Syu python2-neovim python-neovim neovim
+	rm -rf $(HOME)/.config/nvim/
+	mkdir -p $(HOME)/.config/nvim/
+	ln -s $(CWD)/init.vim $(HOME)/.config/nvim/init.vim
+	curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 git:
 	rm -rf $(HOME)/.gitconfig
