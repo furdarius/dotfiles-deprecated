@@ -1,15 +1,9 @@
 CWD=$(shell pwd)
 
-all: terminal vim git shell
+all: terminal git
 
 terminal:
-	# http://www.linuxandubuntu.com/home/terminator-a-linux-terminal-emulator-with-multiple-terminals-in-one-window
-	curl -fLo $(HOME)/terminator-src.tar.gz https://launchpad.net/terminator/gtk3/1.91/+download/terminator-1.91.tar.gz \
-		&& tar -xzf $(HOME)/terminator-src.tar.gz -C $(HOME) \
-		&& rm -rf $(HOME)/terminator-src.tar.gz \
-		&& cd $(HOME)/terminator-* \
-		&& sudo ./setup.py install \
-		&& cd -
+	sudo pacman -Syu terminator
 	ln -s $(CWD)/terminator $(HOME)/.config/terminator
 
 vim:

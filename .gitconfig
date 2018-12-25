@@ -24,7 +24,7 @@
 [push]
 	default = current
 [rebase]
-        autoStash = true
+    autoStash = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
