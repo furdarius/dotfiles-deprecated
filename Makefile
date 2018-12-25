@@ -1,6 +1,6 @@
 CWD=$(shell pwd)
 
-all: terminal git neovim
+all: terminal git neovim zsh
 
 terminal:
 	sudo pacman -Syu terminator
@@ -20,26 +20,15 @@ git:
 	ln -s $(CWD)/.gitconfig $(HOME)/.gitconfig
 	touch $(HOME)/.gitignore_global
 
-shell:
-	# https://gist.github.com/furdarius/97bf6092104222fd36c4fd351b9264c2
-	# sudo apt install zsh
-	# sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	# wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-	# wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-	# mv PowerlineSymbols.otf ~/.fonts/
-	# fc-cache -vf ~/.fonts/
-	# mkdir -p .config/fontconfig/conf.d
-	# mv 10-powerline-symbols.conf $(HOME)/.config/fontconfig/conf.d/
+zsh:
 	rm -rf $(HOME)/.zsh_profile
 	rm -rf $(HOME)/.zsh_aliases
 	ln -s $(CWD)/.zsh_aliases $(HOME)/.zsh_aliases
 	ln -s $(CWD)/.zsh_profile $(HOME)/.zsh_profile
-	echo "source ~/.zsh_aliases" >> $(HOME)/.zshrc \
-		&& echo "source ~/.zsh_profile" >> $(HOME)/.zshrc
+	echo "source ~/.zsh_aliases" >> $(HOME)/.zshrc
+	echo "source ~/.zsh_profile" >> $(HOME)/.zshrc
 	sed -i 's/robbyrussell/agnoster/g' $(HOME)/.zshrc
-	# sudo apt install dconf-cli
-	# git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git $(HOME)/.solarized
-	# cd $(HOME)/.solarized && ./install.sh && cd -
-	# echo "eval `dircolors ~/.dir_colors/dircolors`" >> $(HOME)/.zshrc
+	# xclip used to copy output to clipboard. e.g. cat file | xclip -sel clip
+	sudo pacman -Syu xclip
 
-.PHONY: terminal vim git shell
+.PHONY: terminal git neovim zsh

@@ -1,8 +1,7 @@
-# Furdarius/dotfiles                                                                                                                                                   
-My personal dotfiles
+# Furdarius/dotfiles
 
-# Install
-* Install Terminator: http://www.linuxandubuntu.com/home/terminator-a-linux-terminal-emulator-with-multiple-terminals-in-one-window
-	(Intltool may be required: http://www.linuxfromscratch.org/blfs/view/7.5/general/intltool.html)
-* Install ZSH: https://gist.github.com/Furdarius/97bf6092104222fd36c4fd351b9264c2
-* Do `make`
+My personal dotfiles for Arch Linux.
+
+See https://gist.github.com/furdarius/20964fa0f49a7c563c4ba87a1b41e3b0 to bootstrap Manjaro with xfce.
+
+Use `make` to setup configurations.
