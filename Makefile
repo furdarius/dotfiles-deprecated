@@ -18,7 +18,7 @@ neovim:
 git:
 	rm -rf $(HOME)/.gitconfig
 	ln -s $(CWD)/.gitconfig $(HOME)/.gitconfig
-	touch $(HOME)/.gitignore_global
+	ln -s $(CWD)/.gitignore_global $(HOME)/.gitignore_global
 
 zsh:
 	rm -rf $(HOME)/.zsh_profile
