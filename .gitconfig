@@ -1,6 +1,7 @@
 [user]
     name = Artemiy Ryabinkov
     email = getlag@ya.ru
+    signingkey = 20BC8D51AC7CE7C1
 [gpg]
     program = gpg2
 [color]
