@@ -1,7 +1,10 @@
 [user]
     name = Artemiy Ryabinkov
     email = getlag@ya.ru
-    signingkey = 20BC8D51AC7CE7C1
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore_global
 [gpg]
     program = gpg2
 [color]
@@ -12,22 +15,25 @@
     insteadOf = https://gitlab.com/
 [diff]
     tool = meld
-[alias]
-    c = commit -sS
-    d = difftool
-    st = status --short --branch
-    grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
-[core]
-    editor = nvim
-    excludesfile = /home/furdarius/.gitignore_global
+    prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL $REMOTE"
 [push]
-	default = current
+    default = current
 [rebase]
     autoStash = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[alias]
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+    a = add --all
+    c = commit -sS
+    d = diff
+    dt = difftool
+    ps = push
+    st = status --short --branch
+    grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+

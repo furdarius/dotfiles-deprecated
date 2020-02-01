@@ -1,10 +1,11 @@
 [global_config]
   borderless = True
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  suppress_multiple_term_dialog = True
   tab_position = hidden
   title_font = PowerlineSymbols Medium 14
   title_transmit_bg_color = "#506688"
-  window_state = fullscreen
+  window_state = maximise
 [keybindings]
   go_next = <Shift><Control>o
   move_tab_left = <Shift><Alt>Left
