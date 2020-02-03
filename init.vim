@@ -127,11 +127,14 @@ let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
 
 " ==================== NerdTree ====================
-" For toggling
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
+
+" =================== Hashicorp Tools ==============
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
