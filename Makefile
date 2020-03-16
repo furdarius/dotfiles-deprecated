@@ -32,6 +32,8 @@ zsh:
 	sudo pacman -Syu --needed xclip
 
 i3:
+	sudo pacman -Syu --needed xorg-server xorg-xinit i3 polybar rofi
+	@echo "Add \"exec i3\" to \"/etc/X11/xinit/xinitrc\""
 	rm -rf $(HOME)/.config/i3
 	ln -sfn $(CWD)/.config/i3 $(HOME)/.config/i3
 	rm -rf $(HOME)/.config/polybar
