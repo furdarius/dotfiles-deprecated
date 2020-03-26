@@ -1,14 +1,14 @@
 CWD=$(shell pwd)
 
-all: terminal git neovim zsh i3
+all: terminal git neovim zsh i3 rofi
 
 terminal:
-	sudo pacman -Syu --needed alacritty
+	sudo pacman -S --needed alacritty
 	rm -rf $(HOME)/.config/alacritty
 	ln -sfn $(CWD)/.config/alacritty $(HOME)/.config/alacritty
 
 neovim:
-	sudo pacman -Syu --needed python-neovim neovim
+	sudo pacman -S --needed python-neovim neovim
 	rm -rf $(HOME)/.config/nvim
 	ln -sfn $(CWD)/.config/nvim $(HOME)/.config/nvim
 	curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -29,19 +29,27 @@ zsh:
 	sed -i 's/robbyrussell/agnoster/g' $(HOME)/.zshrc
 	sed -i 's/plugins=(.*)/plugins=(git gpg-agent ssh-agent docker kubectl sudo)/g' $(HOME)/.zshrc
 	# xclip used to copy output to clipboard. e.g. cat file | xclip -sel clip
-	sudo pacman -Syu --needed xclip
+	sudo pacman -S --needed xclip
 
 i3:
-	sudo pacman -Syu --needed xorg-server xorg-xinit i3 polybar rofi
+	sudo pacman -S --needed xorg-server xorg-xinit i3-gaps
 	@echo "Add \"exec i3\" to \"/etc/X11/xinit/xinitrc\""
+	yay -S polybar
 	rm -rf $(HOME)/.config/i3
 	ln -sfn $(CWD)/.config/i3 $(HOME)/.config/i3
 	rm -rf $(HOME)/.config/polybar
 	ln -sfn $(CWD)/.config/polybar $(HOME)/.config/polybar
-	mkdir -p $(HOME)/.local/share/fonts
 	rm -rf $(HOME)/.local/share/fonts/polybar
 	ln -sfn $(CWD)/.config/polybar/fonts $(HOME)/.local/share/fonts/polybar
 	fc-cache
 
+rofi:
+	sudo pacman -S --needed rofi
+	rm -rf $(HOME)/.config/rofi
+	ln -sfn $(CWD)/.config/rofi $(HOME)/.config/rofi
+	rm -rf $(HOME)/.local/share/fonts/rofi
+	ln -sfn $(CWD)/.config/rofi/fonts $(HOME)/.local/share/fonts/rofi
+	yay -S papirus-icon-theme
+	fc-cache
 
-.PHONY: terminal git neovim zsh i3
+.PHONY: terminal git neovim zsh i3 rofi

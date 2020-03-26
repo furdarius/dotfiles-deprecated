@@ -16,6 +16,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-commentary'
 Plug 'unblevable/quick-scope'
 Plug 'itchyny/lightline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
