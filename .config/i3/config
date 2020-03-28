@@ -37,6 +37,10 @@ exec --no-startup-id picom -b -CG --fade-in-step=1 --fade-out-step=1 --fade-delt
 # Notification manager
 exec --no-startup-id dunst
 
+exec --no-startup-id hsetroot -center ~/.wallpaper.png
+
+exec --no-startup-id xsettingsd
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
