@@ -32,6 +32,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+exec --no-startup-id picom -b -CG --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --no-fading-openclose
+
+# Notification manager
+exec --no-startup-id dunst
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -43,7 +48,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec "~/.scripts/i3-term-in-current-dir.sh"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -58,10 +64,10 @@ bindsym $mod+d exec $HOME/.config/rofi/launchers/launcher.sh
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+l focus left
+bindsym $mod+l focus right
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+h focus right
+bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -213,7 +219,16 @@ client.background           #2f343f
 hide_edge_borders both
 new_window pixel 0
 
+# Keyboard layout
 exec setxkbmap -layout dvorak
 bindcode $win+24 exec setxkbmap -layout us
 bindcode $win+27 exec setxkbmap -layout ru
-bindcode $win+40 exec setxkbmap -layout dvorak
+
+
+# Screenshots
+# Commands copy screenshot to clipboard and save to file
+bindsym Print exec "maim | xclip -selection clipboard -t image/png && xclip -selection clipboard -t image/png -o > $HOME/Pictures/screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
+bindsym Shift+Print exec "maim -s | xclip -selection clipboard -t image/png && xclip -selection clipboard -t image/png -o > $HOME/Pictures/screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
+
+# bindsym Shift+Ctrl+Print $exec "~/.scripts/record.sh ~/Videos/Capture_from_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+# bindsym Ctrl+Print $exec "killall ffmpeg; notify-send 'Recording has been stoped'"

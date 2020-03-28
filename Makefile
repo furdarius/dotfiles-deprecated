@@ -33,7 +33,10 @@ zsh:
 
 i3:
 	sudo pacman -S --needed xorg-server xorg-xinit i3-gaps
-	@echo "Add \"exec i3\" to \"/etc/X11/xinit/xinitrc\""
+	# Picom is compositor (compton fork)
+	# Maim is screenshoot's utility
+	# dunst is notification daemon
+	sudo pacman -S --needed picom xdotool maim dunst network-manager-applet
 	yay -S polybar
 	rm -rf $(HOME)/.config/i3
 	ln -sfn $(CWD)/.config/i3 $(HOME)/.config/i3
@@ -42,6 +45,10 @@ i3:
 	rm -rf $(HOME)/.local/share/fonts/polybar
 	ln -sfn $(CWD)/.config/polybar/fonts $(HOME)/.local/share/fonts/polybar
 	fc-cache
+	rm -rf $(HOME)/.scripts
+	ln -sfn $(CWD)/scripts $(HOME)/.scripts
+	mkdir -p $(HOME)/Pictures/screenshots
+	@echo "Add \"exec i3\" to \"/etc/X11/xinit/xinitrc\""
 
 rofi:
 	sudo pacman -S --needed rofi
