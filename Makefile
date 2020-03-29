@@ -32,7 +32,7 @@ zsh:
 	sudo pacman -S --noconfirm --needed xclip
 
 i3:
-	sudo pacman -S --noconfirm --needed xorg-server xorg-xinit i3-gaps
+	sudo pacman -S --noconfirm --needed xorg-server xorg-xinit i3-gaps i3lock
 	# Picom is compositor (compton fork)
 	# Maim is screenshoot's utility
 	# dunst is notification daemon
