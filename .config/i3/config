@@ -229,7 +229,7 @@ new_window pixel 0
 exec setxkbmap -layout dvorak
 bindcode $win+24 exec setxkbmap -layout us
 bindcode $win+27 exec setxkbmap -layout ru
-
+bindcode $win+40 exec setxkbmap -layout dvorak
 
 # Screenshots
 # Commands copy screenshot to clipboard and save to file
