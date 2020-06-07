@@ -32,7 +32,7 @@ zsh:
 	sudo pacman -S --noconfirm --needed xclip
 
 i3:
-	sudo pacman -S --noconfirm --needed xorg-server xorg-xinit i3-gaps i3lock
+	sudo pacman -S --noconfirm --needed xorg-server xorg-xinit i3-wm i3lock
 	# Picom is compositor (compton fork)
 	# Maim is screenshoot's utility
 	# dunst is notification daemon
@@ -45,6 +45,7 @@ i3:
 	rm -rf $(HOME)/.config/polybar
 	ln -sfn $(CWD)/.config/polybar $(HOME)/.config/polybar
 	rm -rf $(HOME)/.local/share/fonts/polybar
+	mkdir -p $(HOME)/.local/share/fonts
 	ln -sfn $(CWD)/.config/polybar/fonts $(HOME)/.local/share/fonts/polybar
 	fc-cache
 	rm -rf $(HOME)/.scripts
