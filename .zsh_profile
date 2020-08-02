@@ -28,4 +28,8 @@ ex ()
   fi
 }
 
+tldr() {
+  curl "cheat.sh/$@"
+}
+
 [ -f $HOME/.zsh_profile_ext ] && source $HOME/.zsh_profile_ext

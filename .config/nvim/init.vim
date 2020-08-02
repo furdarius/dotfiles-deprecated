@@ -70,7 +70,8 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
   autocmd BufNewFile,BufRead *.{yaml|yml} setf yaml
   autocmd BufNewFile,BufRead *.hcl setf conf
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab shiftwidth=4 tabstop=4  
+  autocmd BufNewFile,BufRead *.cpp setlocal expandtab shiftwidth=4 tabstop=4
   
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
